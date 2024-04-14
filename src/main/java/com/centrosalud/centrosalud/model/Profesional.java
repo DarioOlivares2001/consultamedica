@@ -1,33 +1,25 @@
 package com.centrosalud.centrosalud.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import jakarta.persistence.Column;
 import jakarta.persistence.GenerationType;
 
-
 @Entity
-@Table(name = "paciente")
-public class Paciente {
-    
+@Table(name = "profesional")
+public class Profesional {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idpac")
-    private Long idpac;
+    @Column(name = "idprof")
+    private Long idprof;
 
     @Column(name = "rut")
     private String rut;
-
-    public Long getIdpac() {
-        return idpac;
-    }
-
-    public void setIdpac(Long idpac) {
-        this.idpac = idpac;
-    }
 
     @Column(name = "nombres")
     private String nombres;
@@ -35,10 +27,17 @@ public class Paciente {
     @Column(name = "apellidos")
     private String apellidos;
 
-    @Column(name = "edad")
-    private Long edad;
+    @ManyToOne
+    @JoinColumn(name = "ides")
+    private Especialidad especialidad;
 
-   
+    public Long getIdprof() {
+        return idprof;
+    }
+
+    public void setIdprof(Long idprof) {
+        this.idprof = idprof;
+    }
 
     public String getRut() {
         return rut;
@@ -64,15 +63,17 @@ public class Paciente {
         this.apellidos = apellidos;
     }
 
-    public Long getEdad() {
-        return edad;
+    public Especialidad getEspecialidad() {
+        return especialidad;
     }
 
-    public void setEdad(Long edad) {
-        this.edad = edad;
+    public void setEspecialidad(Especialidad especialidad) {
+        this.especialidad = especialidad;
     }
 
-  
+    
 
 
+
+    
 }

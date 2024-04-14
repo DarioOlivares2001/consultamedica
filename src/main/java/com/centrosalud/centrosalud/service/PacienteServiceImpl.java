@@ -36,7 +36,7 @@ public class PacienteServiceImpl implements PacienteService{
     {
         if(pacienteRepository.existsById(id))
         {
-            paciente.setId(id);
+            paciente.setIdpac(id);
             return pacienteRepository.save(paciente);
         }
         else
