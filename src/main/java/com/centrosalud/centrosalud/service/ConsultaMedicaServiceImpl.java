@@ -33,7 +33,6 @@ public class ConsultaMedicaServiceImpl implements ConsultaMedicaService{
 
     @Override
     public void deleteConsultaMedica(Long id){
-    
         consultaMedicaRepository.deleteById(id);
     }
 }
