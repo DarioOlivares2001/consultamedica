@@ -73,14 +73,18 @@ public class PacienteController {
     @GetMapping
     public CollectionModel<EntityModel<Paciente>> getAllPacientes() {
         List<Paciente> pacientes = pacienteService.getAllPacientes();
+        log.info("GET /pacientes");
+        log.info("Lista de todos los pacientes");
+    
         List<EntityModel<Paciente>> pacienteResources = pacientes.stream()
             .map(paciente -> EntityModel.of(paciente,
                     WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(this.getClass()).getPacienteById(paciente.getIdpac())).withSelfRel()
             ))
             .collect(Collectors.toList());
-
-        Link linkTo = WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(this.getClass()).getAllPacientes()).withSelfRel();
-        return CollectionModel.of(pacienteResources, linkTo.withRel("pacientes"));
+    
+        WebMvcLinkBuilder linkTo = WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(this.getClass()).getAllPacientes());
+        CollectionModel<EntityModel<Paciente>> resources = CollectionModel.of(pacienteResources, linkTo.withRel("pacientes"));
+        return resources;
     }
 
 
