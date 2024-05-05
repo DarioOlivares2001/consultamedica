@@ -37,4 +37,8 @@ public class ProfesionalServiceImpl implements ProfesionalService{
         profesionalRepository.deleteById(id);
     }
     
+    @Override
+    public Profesional updateProfesional(Long id, Profesional profesional){
+        return profesionalRepository.save(profesional);
+    }
 }

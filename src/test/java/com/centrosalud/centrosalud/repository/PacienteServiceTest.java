@@ -43,4 +43,22 @@ public class PacienteServiceTest {
         assertFalse(pacienteRepository.existsById(pacienteGuardado.getIdpac()));
     }
 
+    //NUEVAS PRUEBAS
+    @Test
+    public void buscarPacientePorIdExistenteTest() {
+        Paciente pac = new Paciente();
+        pac.setNombres("John Doe");
+        Paciente pacienteGuardado = pacienteRepository.save(pac);
+
+        Optional<Paciente> pacienteOptional = pacienteRepository.findById(pacienteGuardado.getIdpac());
+        assertTrue(pacienteOptional.isPresent());
+        assertEquals("John Doe", pacienteOptional.get().getNombres());
+    }
+
+    @Test
+    public void buscarPacientePorIdNoExistenteTest() {
+        Optional<Paciente> pacienteOptional = pacienteRepository.findById(999L);
+        assertFalse(pacienteOptional.isPresent());
+    }
+
 }

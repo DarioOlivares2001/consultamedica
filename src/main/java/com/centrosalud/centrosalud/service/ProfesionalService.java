@@ -13,5 +13,7 @@ public interface ProfesionalService {
     Optional<Profesional> getProfesionalById(Long id);
     Profesional createProfesional(Profesional profesional);
     void deleteProfesional(Long id);
+    Profesional updateProfesional(Long id, Profesional profesional);
+    
     
 }
